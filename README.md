@@ -55,13 +55,41 @@
     - 3.4、在.so文件中验证签名
 
 
-#第一个demo:
-     1、功能:打印工具类中的调试日志
-     2、影响:日志完全暴露。
-     3、建议:敏感性的日志尽量使用完就删除,一旦工具类被修改,日志也会完全暴露
-     4、具体复现
-        4.1、使用DexToJar 获取jar包
-        4.2、使用JD-GUI打开分析,定位关键代码位置。这里是通过Log.d定位关键类和关键方法(代码复制可以使用JD-GUI的 save all sources将代码放入android studio 中分析)
+三、第一个demo:
+-----
+ * 1、功能:修改打印工具类，实现输出打印日志
+ * 2、影响:日志完全暴露。
+ * 3、建议:敏感性的日志尽量使用完就删除,一旦工具类被修改,日志也会完全暴露
+ * 4、具体复现<br>
+  - 4.1、使用该demo
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one1.png)
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one2.png)
+     
+     这里没有使用各大app,只是简单写了一个demo,原因一：此篇文章主要是通过反编译去提高App被反编译的难度，原因二：破解别人的软件始终不是太好。
+     这里简单的写了一个日志工具类，很可能和大家使用的不一样，但大多数日志都有一个开关逻辑。用这个开关去控制所有日志是否打印。
+  - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one8.png)
+          
+
+          这里的中文可以说为定位文件起来不小作用，我们只用去找a类中的a方法
+  - 4.3使用ApkTool反编译apk(参照工具中的方法)，然后修改
+        ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one6.png)
+
+          然后Log.d 能很轻松的定位修改位置。
+          <pre><code>if-eqz v0, :cond_0  #这句话的含义如果v0＝＝0执行cond_0分支，执行cond_0分支就方法就结束了所以把v0值修改即可</code></pre>
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one9.png)
+          “＃“ 代表注释返回值赋值给v0 注释掉，重新给v0赋值
+  - 4.4、重新打包（参考工具）
+  - 4.5、签名（签名工具在assets中，key也准备好了，密钥就在项目里，自己找吧）
+  - 4.6、安装打印
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one7.png)
+           如果日志是这样的，那恭喜你，你成功了。
+
+
+  
+
+  * 4.1、使用DexToJar 获取jar包(参照工具中获取jar的方法)
+  * 4.2、使用JD-GUI打开分析,定位关键代码位置。这里是通过Log.d定位关键类和关键方法(代码复制可以使用JD-GUI的 save all sources将代码放入android studio 中分析)
         4.3、修改工具类,在判断之前,修改判断对象的值(可参考assets/DemoOneAndroidManifest.xml)
              4.3.1、# move-result v0  65行注释返回调用
              4.3.2、 const/4 v0, 0x1
