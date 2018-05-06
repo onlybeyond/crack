@@ -1,10 +1,10 @@
 # crack
 一、介绍
 -------
-        反编译与防反编译的0到1系列第一篇。该篇目的是让读者了解反编译的基本过程，可以完全没有基础，也不用了解smali语法。文章里面demo提供所有
-    需要使用的apk以及相应的修改代码。只需傻瓜式的模仿就能够学会。</br>
-       反编译与防反编译的0到1系列主要用于增加反编译技术栈，避免一些低级的错误让软件被有心者破解。因此后续还会有smali语法的介绍和smali的修改。
-    在.so文件中添加签名验证。
+反编译与防反编译的0到1系列第一篇。该篇目的是让读者了解反编译的基本过程，可以完全没有基础，也不用了解smali语法。文章里面demo提供所有
+需要使用的apk以及相应的修改代码。只需傻瓜式的模仿就能够学会。</br>
+反编译与防反编译的0到1系列主要用于增加反编译技术栈，避免一些低级的错误让软件被有心者破解。因此后续还会有smali语法的介绍和smali的修改。
+在.so文件中添加签名验证。
 
 二、工具
 -------
@@ -116,14 +116,17 @@
          布局文件id可能在public.xml(res/values中)也有可能在R$layout.smali文件中（smail文件夹下）有可能是不同编译器版本造成的，<br>
          不在本篇讨论范围。layout id 最大的是0x7f04002e，在它的基础上加1即可（注意采用的是16进制）
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
-               过程中有可能遇到上面的错误，上面原因很明显id重复，说明新加的id不对。
+         过程中有可能遇到上面的错误，上面原因很明显id重复，说明新加的id不对。
    - 3.7、修改smail文件的id<br>
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two11.png)
          找到setContentView()可以快速定位，将id替换成步骤3.6中添加的id
    - 3.8、重新打包<br>
-         命令：apktool b  demo_two(文件真实路径) －o demo_two_new.apk
+          命令：apktool b  demo_two(文件真实路径) －o demo_two_new.apk
    - 3.9、签名安装<br>
-         如果先显示“这是一个注入的页面”恭喜你成功了。如果没见到这个页面可以反编译demo_two_crack.apk查看一下原因
+          如果先显示“这是一个注入的页面”恭喜你成功了。如果没见到这个页面可以反编译demo_two_crack.apk查看一下原因
+          
+          本片文章到此结束，如果对你有帮助，可以star一下，让更多人知道，让更多人受益。文章中存在问题的地方，或者有待改进的地方可以issues中提出。
+         
 
 
 
