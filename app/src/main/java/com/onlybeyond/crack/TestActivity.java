@@ -22,6 +22,7 @@ public class TestActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         testLog();
     }
+
     /**
      * 用于测试release版修改debug版
      * release 包不会打印debug级别日志
