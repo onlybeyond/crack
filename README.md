@@ -38,8 +38,8 @@
     - 1.2.3、使用
              mac: 将d2j-dex2jar.sh 托人命令行 将反编译apk拖入命令行<br>
               /Users/xxx/Desktop/xxx/xxx/d2j-dex2jar.sh /Users/xxx/Desktop/xxx/crack.apk
-  - 1.3、JD-GUI
-    - 1.3.1、下载地址:http://jd.benow.ca/
+  - 1.3、JD-GUId
+    - 1.3.1、下载地址:http://jd.benow.ca/
     - 1.3.2、功能: 读取jar文件
   - 1.4、界面工具
     - 1.4.1、下载地址:https://github.com/Jermic/Android-Crack-Tool
@@ -86,15 +86,42 @@
   - 4.6、安装打印
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one7.png)
            如果日志是这样的，那恭喜你，你成功了。
+  - 4.7、其他
+    ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one11.png)
+    不想运行者，可以反编译demo_one_apk1进行修改。demo_two_crack为修改后的apk.
+
 
  第二个demo:插入一个开始页
  -------
-       2.影响:app 可能被插入广告
-       3.建议：进行签名校验
-       4.步骤:
-          1.1、新建一个apk包名一样的项目,创建插入启动页(这里使用的是InsertActivity)
-          1.2、反编译旧apk得到旧apk文件夹
-          1.3、反编译新apk,将布局文件和smali文件放入旧apk的layout
+       1.影响:app 可能被插入广告
+       2.建议：进行签名校验
+       3.步骤:
+           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two8.png)
+         3.1运行得到demo_two.apk,将assets的demo_two文件已经写好Activity和布局文件，添加到相应位置运行得到demo_two_2.apk
+            也可以直接使用文件夹中两个apk
+         3.2反编译demo_two.apk
+             命令：apktool d demo_two.apk(文件真实路径)
+         3.3、反编译demo_two_2.apk
+                命令：apktool d demo_two_2.apk(文件真实路径)
+         3.4合并smali文件
+            ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two9.png)
+            将demo_two_2.apk反编译smali文件夹中的a.smali和InsertActivity.smali拷贝到demo_two.apk反编译的文件中。
+         3.5、修改AndroidManifest.xml文件
+              ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two9.png)
+              去掉默认的启动标志，添加新的启动Activity
+          3.6、修改资源id
+               ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
+               布局文件id可能在public.xml(res/values中)也有可能在R$layout.smali文件中（smail文件夹下）有可能是不同编译器版本造成的，
+               不在本篇讨论范围。layout id 最大的是0x7f04002e，在它的基础上加1即可（注意采用的是16进制）
+               ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
+               过程中有可能遇到上面的错误，上面原因很明显id重复，说明新加的id不对。
+          3.7、修改smail文件的id
+               ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two11.png)
+               找到setContentView()可以快速定位，将id替换成步骤3.6中添加的id
+          3.8、重新打包
+                命令：apktool b  demo_two(文件真实路径) －o demo_two_new.apk
+          3.9、签名安装
+
 
 
 
