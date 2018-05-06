@@ -3,19 +3,19 @@
 -------
         反编译与防反编译的0到1系列第一篇。该篇目的是让读者了解反编译的基本过程，可以完全没有基础，也不用了解smali语法。文章里面demo提供所有
     需要使用的apk以及相应的修改代码。只需傻瓜式的模仿就能够学会。</br>
-        反编译与防反编译的0到1系列主要用于增加反编译技术栈，避免一些低级的错误让软件被有心者破解。因此后续还会有smali语法的介绍和smali的修改。
+       反编译与防反编译的0到1系列主要用于增加反编译技术栈，避免一些低级的错误让软件被有心者破解。因此后续还会有smali语法的介绍和smali的修改。
     在.so文件中添加签名验证。
 
 二、工具
 -------
   * 1、工具说明:工具存放在tools文件夹下,这里仅提供Mac版,其他版本可以根据网址下载
   - 1.1、ApkTool
-    - 1.1.1、下载地址:https://ibotpeaches.github.io/Apktool/
-    - 1.1.2、集成:appt、apktool、apktool.jar，这三个文件拷贝到/usr/local/bin，升级的时候只需替换jar包
-    - 1.1.3、功能:
-      + 1.1.2.1、获取apk资源文件、AndroidManifest.xml文件、smali文件
+    + 1.1.1、下载地址:https://ibotpeaches.github.io/Apktool/
+    + 1.1.2、集成:appt、apktool、apktool.jar，这三个文件拷贝到/usr/local/bin，升级的时候只需替换jar包
+    + 1.1.3、功能:
+      - 1.1.2.1、获取apk资源文件、AndroidManifest.xml文件、smali文件
                  apktool d xxx/xxx/crack.apk(生成文件在命令当前位置)
-      + 1.1.2.2、 重新打包
+      - 1.1.2.2、 重新打包
                         apktool b xxx/xxx/crack -o new_crack.apk<br>
     - 1.1.4、可能存在问题:<br>
     
@@ -34,18 +34,18 @@
                                         
       解决方案:https://ibotpeaches.github.io/Apktool/ 下载最新jar包替换即可。
 
-  - 1.2、DexToJar<br>
-    - 1.2.1、下载地址:https://sourceforge.net/projects/dex2jar/
-    - 1.2.2、功能:dex转jar
-    - 1.2.3、使用
+   - 1.2、DexToJar<br>
+     + 1.2.1、下载地址:https://sourceforge.net/projects/dex2jar/
+     + 1.2.2、功能:dex转jar
+     + 1.2.3、使用
              mac: 将d2j-dex2jar.sh 托人命令行 将反编译apk拖入命令行<br>
-              /Users/xxx/Desktop/xxx/xxx/d2j-dex2jar.sh /Users/xxx/Desktop/xxx/crack.apk
-  - 1.3、JD-GUId
-    - 1.3.1、下载地址:http://jd.benow.ca/
-    - 1.3.2、功能: 读取jar文件
+              /Users/xxx/Desktop/xxx/xxx/d2j-dex2jar.sh /Users/xxx/Desktop/xxx/crack.apk<br>
+  - 1.3、JD-GUId<br>
+    + 1.3.1、下载地址:http://jd.benow.ca/
+    + 1.3.2、功能: 读取jar文件
   - 1.4、界面工具
     - 1.4.1、下载地址:https://github.com/Jermic/Android-Crack-Tool
-  - 2、反编译思路
+ * 2、反编译思路
     - 2.1、dexToJar 获取jar包
     - 2.2、使用JD-GUI分析代码,定位位置
     - 2.3、修改变量的值,或方法返回后重置返回值
@@ -63,7 +63,7 @@
  * 2、影响:日志完全暴露。
  * 3、建议:敏感性的日志尽量使用完就删除,一旦工具类被修改,日志也会完全暴露
  * 4、具体复现<br>
-  - 4.1、使用该demo
+   - 4.1、使用该demo
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one1.png)
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one2.png)
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one3.png)
@@ -72,26 +72,25 @@
      有两原因：原因一此篇文章主要是通过反编译去提高App被反编译的难度。<br>
      原因二：破解别人的软件始终不是太好。
      这里简单的写了一个日志工具类，很可能和大家使用的不一样，但大多数日志都有一个开关逻辑。用这个开关去控制所有日志是否打印。<br>
-  - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
+   - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one8.png)
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one10.png)        
-          这里的中文可以说为定位文件起来不小作用，我们只用去找a类中的a方法
-  - 4.3使用ApkTool反编译apk(参照工具中的方法)，然后修改
+          这里的中文可以说为定位文件起来不小作用，我们只用去找a类中的a方法<br>
+   - 4.3、使用ApkTool反编译apk(参照工具中的方法)，然后修改
         ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one6.png)
-
-          然后Log.d 能很轻松的定位修改位置。
+          Log.d 能很轻松的定位修改位置。
           <pre><code>if-eqz v0, :cond_0  #这句话的含义如果v0＝＝0执行cond_0分支，执行cond_0分支就方法就结束了所以把v0值修改即可</code></pre>
-          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one9.png)
+        ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one9.png)
           “＃“ 代表注释返回值赋值给v0 注释掉，重新给v0赋值
-  - 4.4、重新打包（参考工具）
-  - 4.5、签名（签名工具在assets中，key也准备好了，密钥就在项目里，自己找吧）
-  - 4.6、安装打印
+   - 4.4、重新打包（参考工具）
+   - 4.5、签名（签名工具在assets中，key也准备好了，密钥就在项目里，自己找吧）
+   - 4.6、安装打印
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one7.png)
            如果日志是这样的，那恭喜你，你成功了。
   - 4.7、其他<br>
     ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one11.png)
     
-    不想运行者，可以反编译demo_one_apk1进行修改。demo_two_crack为修改后的apk.
+     也可以直接反编译demo_one_apk1进行修改。demo_two_crack为修改后的apk.
 
 
  第二个demo:插入一个开始页
