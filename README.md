@@ -90,7 +90,7 @@
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one7.png)
            如果日志是这样的，那恭喜你，你成功了。
    - 4.7、其他<br>
-    ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one11.png)
+    ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one11.png)<br>
      也可以直接反编译demo_one_apk1进行修改。demo_two_crack为修改后的apk.
 
 
