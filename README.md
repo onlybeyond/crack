@@ -72,24 +72,23 @@
      有两原因：原因一此篇文章主要是通过反编译去提高App被反编译的难度。<br>
      原因二：破解别人的软件始终不是太好。
      这里简单的写了一个日志工具类，很可能和大家使用的不一样，但大多数日志都有一个开关逻辑。用这个开关去控制所有日志是否打印。<br>
-   - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
+   - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one8.png)
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one10.png)        
-          这里的中文可以说为定位文件起来不小作用，我们只用去找a类中的a方法<br>
+          这里的中文可以说为定位文件起来不小作用，我们只用去找a类中的a方法<br>       
    - 4.3、使用ApkTool反编译apk(参照工具中的方法)，然后修改
         ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one6.png)
           Log.d 能很轻松的定位修改位置。
           <pre><code>if-eqz v0, :cond_0  #这句话的含义如果v0＝＝0执行cond_0分支，执行cond_0分支就方法就结束了所以把v0值修改即可</code></pre>
         ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one9.png)
-          “＃“ 代表注释返回值赋值给v0 注释掉，重新给v0赋值
+          “＃“ 代表注释返回值赋值给v0 注释掉，重新给v0赋值        
    - 4.4、重新打包（参考工具）
    - 4.5、签名（签名工具在assets中，key也准备好了，密钥就在项目里，自己找吧）
    - 4.6、安装打印
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one7.png)
            如果日志是这样的，那恭喜你，你成功了。
-  - 4.7、其他<br>
+   - 4.7、其他<br>
     ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one11.png)
-    
      也可以直接反编译demo_one_apk1进行修改。demo_two_crack为修改后的apk.
 
 
@@ -98,33 +97,33 @@
  * 1.影响:app 可能被插入广告
  * 2.建议：进行签名校验
  * 3.步骤:
-  - 3.1、生成demo_two.apk和demo_two_2.apk
+   - 3.1、生成demo_two.apk和demo_two_2.apk
            ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two8.png)
          运行得到demo_two.apk,将assets的demo_two文件已经写好Activity和布局文件，添加到相应位置运行得到demo_two_2.apk
          也可以直接使用文件夹中两个apk
-  - 3.2反编译demo_two.apk
+   - 3.2反编译demo_two.apk<br>
              命令：apktool d demo_two.apk(文件真实路径)
-  - 3.3、反编译demo_two_2.apk
+   - 3.3、反编译demo_two_2.apk<br>
                 命令：apktool d demo_two_2.apk(文件真实路径)
-  - 3.4合并smali文件
+   - 3.4合并smali文件<br>
             ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two9.png)
-            将demo_two_2.apk反编译smali文件夹中的a.smali（TimerTask的匿名内部类产品）和InsertActivity.smali拷贝到demo_two.apk反编译的文件中。
-  - 3.5、修改AndroidManifest.xml文件<br>
+        将demo_two_2.apk反编译smali文件夹中的a.smali（TimerTask的匿名内部类产品）和InsertActivity.smali拷贝到demo_two.apk反编译的文件中。
+   - 3.5、修改AndroidManifest.xml文件<br>
               ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two9.png)
-              去掉默认的启动标志，添加新的启动Activity
-  - 3.6、修改资源id<br>
+          去掉默认的启动标志，添加新的启动Activity
+   - 3.6、修改资源id<br>
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
-               布局文件id可能在public.xml(res/values中)也有可能在R$layout.smali文件中（smail文件夹下）有可能是不同编译器版本造成的，
-               不在本篇讨论范围。layout id 最大的是0x7f04002e，在它的基础上加1即可（注意采用的是16进制）
+         布局文件id可能在public.xml(res/values中)也有可能在R$layout.smali文件中（smail文件夹下）有可能是不同编译器版本造成的，<br>
+         不在本篇讨论范围。layout id 最大的是0x7f04002e，在它的基础上加1即可（注意采用的是16进制）
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
                过程中有可能遇到上面的错误，上面原因很明显id重复，说明新加的id不对。
-  - 3.7、修改smail文件的id<br>
+   - 3.7、修改smail文件的id<br>
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two11.png)
-               找到setContentView()可以快速定位，将id替换成步骤3.6中添加的id
-  - 3.8、重新打包<br>
-                命令：apktool b  demo_two(文件真实路径) －o demo_two_new.apk
-  - 3.9、签名安装<br>
-           如果先显示“这是一个注入的页面”恭喜你成功了。如果没见到这个页面可以反编译demo_two_crack.apk查看一下原因
+         找到setContentView()可以快速定位，将id替换成步骤3.6中添加的id
+   - 3.8、重新打包<br>
+         命令：apktool b  demo_two(文件真实路径) －o demo_two_new.apk
+   - 3.9、签名安装<br>
+         如果先显示“这是一个注入的页面”恭喜你成功了。如果没见到这个页面可以反编译demo_two_crack.apk查看一下原因
 
 
 
