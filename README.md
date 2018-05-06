@@ -1,9 +1,10 @@
 # crack
 一、介绍
 -------
-反编译与防反编译的0到1系列第一篇。该篇目的是让读者了解反编译的基本过程，可以完全没有基础，也不用了解smali语法。文章里面demo提供所有
+ 反编译与防反编译的0到1系列第一篇。该篇目的是让读者了解反编译的基本过程，可以完全没有基础，也不用了解smali语法。文章里面demo提供所有
 需要使用的apk以及相应的修改代码。只需傻瓜式的模仿就能够学会。</br>
-反编译与防反编译的0到1系列主要用于增加反编译技术栈，避免一些低级的错误让软件被有心者破解。因此后续还会有smali语法的介绍和smali的修改。
+
+ 反编译与防反编译的0到1系列主要用于增加反编译技术栈，避免一些低级的错误让软件被有心者破解。因此后续还会有smali语法的介绍和smali的修改。
 在.so文件中添加签名验证。
 
 二、工具
@@ -68,9 +69,10 @@
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one2.png)
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one3.png)
      
-     这里没有使用各大app,只是简单写了一个demo,控制台只会输出一行日志。
-     有两原因：原因一此篇文章主要是通过反编译去提高App被反编译的难度。<br>
-     原因二：破解别人的软件始终不是太好。
+     这里没有使用各大app,只是简单写了一个demo,控制台只会输出一行日志。<br>
+     有两原因：<br>
+     原因一：复杂的App不利于初学者上手。<br>
+     原因二：破解别人的软件始终不是太好。<br>
      这里简单的写了一个日志工具类，很可能和大家使用的不一样，但大多数日志都有一个开关逻辑。用这个开关去控制所有日志是否打印。<br>
    - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one8.png)
@@ -98,8 +100,8 @@
  * 2.建议：进行签名校验
  * 3.步骤:
    - 3.1、生成demo_two.apk和demo_two_2.apk
-           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two8.png)
-         运行得到demo_two.apk,将assets的demo_two文件已经写好Activity和布局文件，添加到相应位置运行得到demo_two_2.apk
+           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two8.png)<br>
+         运行得到demo_two.apk,将assets的demo_two文件已经写好Activity和布局文件，添加到相应位置运行得到demo_two_2.apk
          也可以直接使用文件夹中两个apk
    - 3.2反编译demo_two.apk<br>
              命令：apktool d demo_two.apk(文件真实路径)
@@ -123,9 +125,9 @@
    - 3.8、重新打包<br>
           命令：apktool b  demo_two(文件真实路径) －o demo_two_new.apk
    - 3.9、签名安装<br>
-          如果先显示“这是一个注入的页面”恭喜你成功了。如果没见到这个页面可以反编译demo_two_crack.apk查看一下原因
-          
-          本片文章到此结束，如果对你有帮助，可以star一下，让更多人知道，让更多人受益。文章中存在问题的地方，或者有待改进的地方可以issues中提出。
+          如果先显示“这是一个注入的页面”恭喜你成功了。如果没见到这个页面可以反编译demo_two_crack.apk查看一下原因   
+          
+ 文章到此就结束了，如果对你有帮助，可以star一下，让更多人知道，让更多人受益。文章中存在问题的地方，或者有待改进的地方可以issues中提出。
          
 
 
