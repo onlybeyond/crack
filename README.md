@@ -36,7 +36,7 @@
     - 1.2.1、下载地址:https://sourceforge.net/projects/dex2jar/
     - 1.2.2、功能:dex转jar
     - 1.2.3、使用
-             mac: 将d2j-dex2jar.sh 托人命令行 将反编译apk拖入命令行
+             mac: 将d2j-dex2jar.sh 托人命令行 将反编译apk拖入命令行<br>
               /Users/xxx/Desktop/xxx/xxx/d2j-dex2jar.sh /Users/xxx/Desktop/xxx/crack.apk
   - 1.3、JD-GUI
     - 1.3.1、下载地址:http://jd.benow.ca/
@@ -64,13 +64,15 @@
   - 4.1、使用该demo
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one1.png)
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one2.png)
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one3.png)
      
-     这里没有使用各大app,只是简单写了一个demo,原因一：此篇文章主要是通过反编译去提高App被反编译的难度，原因二：破解别人的软件始终不是太好。
-     这里简单的写了一个日志工具类，很可能和大家使用的不一样，但大多数日志都有一个开关逻辑。用这个开关去控制所有日志是否打印。
+     这里没有使用各大app,只是简单写了一个demo,控制台只会输出一行日志。
+     有两原因：原因一此篇文章主要是通过反编译去提高App被反编译的难度。<br>
+     原因二：破解别人的软件始终不是太好。
+     这里简单的写了一个日志工具类，很可能和大家使用的不一样，但大多数日志都有一个开关逻辑。用这个开关去控制所有日志是否打印。<br>
   - 4.2、使用DexToJar 获取jar包(参照工具中获取jar的方法)，然后分析
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one8.png)
-          
-
+          ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one10.png)        
           这里的中文可以说为定位文件起来不小作用，我们只用去找a类中的a方法
   - 4.3使用ApkTool反编译apk(参照工具中的方法)，然后修改
         ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one6.png)
@@ -85,24 +87,14 @@
           ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_one7.png)
            如果日志是这样的，那恭喜你，你成功了。
 
-
-  
-
-  * 4.1、使用DexToJar 获取jar包(参照工具中获取jar的方法)
-  * 4.2、使用JD-GUI打开分析,定位关键代码位置。这里是通过Log.d定位关键类和关键方法(代码复制可以使用JD-GUI的 save all sources将代码放入android studio 中分析)
-        4.3、修改工具类,在判断之前,修改判断对象的值(可参考assets/DemoOneAndroidManifest.xml)
-             4.3.1、# move-result v0  65行注释返回调用
-             4.3.2、 const/4 v0, 0x1
-        4.4、打包:使用 apktool b 文件夹路基 -o new.apk
-        4.5、签名(签名可使用工具中的)
-
  第二个demo:插入一个开始页
-       1.步骤:
+ -------
+       2.影响:app 可能被插入广告
+       3.建议：进行签名校验
+       4.步骤:
           1.1、新建一个apk包名一样的项目,创建插入启动页(这里使用的是InsertActivity)
           1.2、反编译旧apk得到旧apk文件夹
           1.3、反编译新apk,将布局文件和smali文件放入旧apk的layout
-       2.影响:app 可能被插入广告
-       3.进行签名校验
 
 
 
