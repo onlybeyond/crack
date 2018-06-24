@@ -111,13 +111,13 @@
             ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two9.png)
         将demo_two_2.apk反编译smali文件夹中的a.smali（TimerTask的匿名内部类产品）和InsertActivity.smali拷贝到demo_two.apk反编译的文件中。
    - 3.5、修改AndroidManifest.xml文件<br>
-              ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two9.png)
+              ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two4.png)
           去掉默认的启动标志，添加新的启动Activity
    - 3.6、修改资源id<br>
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
          布局文件id可能在public.xml(res/values中)也有可能在R$layout.smali文件中（smail文件夹下）有可能是不同编译器版本造成的，<br>
          不在本篇讨论范围。layout id 最大的是0x7f04002e，在它的基础上加1即可（注意采用的是16进制）
-               ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two10.png)
+               ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two5.png)
          过程中有可能遇到上面的错误，上面原因很明显id重复，说明新加的id不对。
    - 3.7、修改smail文件的id<br>
                ![配置图](https://github.com/onlybeyond/crack/blob/master/app/assets/picture/demo_two11.png)
